@@ -38,7 +38,21 @@ It does indeed reboot the camera...
 
 ## Install the script
 
-On your system, copy the file named **TapoC200.pm** to **/usr/share/perl5/ZoneMinder/Control/**.
+This was tested on Ubuntu Server 20.04, just after installing ZoneMinder (following their wiki).
+
+Install dependencies :
+
+```
+sudo apt install libjson-pp-perl libjson-parse-perl
+```
+
+On your system, copy the file named **TapoC200.pm** to **/usr/share/perl5/ZoneMinder/Control/** :
+
+```
+cd /usr/share/perl5/ZoneMinder/Control/
+sudo wget https://raw.githubusercontent.com/oparm/zoneminder-tapo-c200/main/TapoC200.pm
+sudo systemctl restart zoneminder
+```
 
 Make sure it has the same permissions as the existing control scripts in that directory :
 
