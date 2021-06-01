@@ -36,7 +36,7 @@ Or, if you enabled the script debugging, it will reload the script.
 
 It does indeed reboot the camera...
 
-## Install the script
+## Step 1 : Install the script on the system
 
 This was tested on Ubuntu Server 20.04, just after installing ZoneMinder (following their wiki).
 
@@ -104,35 +104,21 @@ drwxr-xr-x 5 root root 4.0K May  6 22:27 ..
 -rw-r--r-- 1 root root  13K Apr 20 01:34 Wanscam.pm
 </pre>
 
-## Camera configuration in ZoneMinder
+## Step 2 : Add the control script to ZoneMinder
 
 Use the same configuration when testing, unless stated otherwise.
 
-### Monitor source tab
+In ZoneMinder "Console" Tab, click "Add" to add a new camera.
 
-**Source Path** is the RTSP path used to display the stream inside ZoneMinder, it has nothing to do with the control script.
-Inside the mobile application, create an account linked to the camera and use those credentials in the "Source Path".
+Go to "Control" tab and click on "Edit" next to "Control Type".
 
-Change user, password and IP. Leave the port to 554 and /stream1.
+![tapoc200-monitor-control-tab-dummy](https://user-images.githubusercontent.com/83918778/120376401-24460000-c31c-11eb-90d2-7b84f14a5dc4.jpg)
 
-![tapoc200-monitor-source-tab](https://user-images.githubusercontent.com/83918778/117584518-c6077200-b10d-11eb-86fa-7aba61aa6eca.jpg)
+Click on "Add New Control" :
 
-### Monitor control tab
+![tapoc200-monitor-control-capabilities-tab-before](https://user-images.githubusercontent.com/83918778/120373376-9288c380-c318-11eb-9868-240a045a6a69.jpg)
 
-![tapoc200-monitor-control-tab](https://user-images.githubusercontent.com/83918778/117584528-cbfd5300-b10d-11eb-85be-8ce2536e8d0b.jpg)
-
-**Control Address** is the HTTPS path used to control the camera inside ZoneMinder.
-
-Change admin_password to the password you created when you installed the mobile application (the password linked to your email address).
-
-Change the IP address. **Leave the username to "admin"**, and the port to 443.
-
-**Control Type** : Click on "Edit" from the previous screenshot, and click on the link named "Tapo C200" inside the list showing up.
-If you don't see "Tapo C200" in the list then the script is not correctly installed.
-
-### Control capabilites tab
-
-![tapoc200-monitor-control-capabilities-tab](https://user-images.githubusercontent.com/83918778/117584541-d881ab80-b10d-11eb-8225-550ae722836e.jpg)
+Now fill each tab as shown in the following captures.
 
 ### Control capability main tab
 
@@ -164,12 +150,44 @@ Use the same settings as :
 
 ![tapoc200-monitor-control-capability-presets-tab](https://user-images.githubusercontent.com/83918778/117584565-f7803d80-b10d-11eb-8752-9f24c744ce74.jpg)
 
+**Now click on "Save" to save the new control.**
+
+## Step 3 : Add the new monitor to ZoneMinder
+
+**Important** : Click on cancel in the previously opened window (the Monitor one), and in ZoneMinder "Console" Tab, click again on "Add" to add a new camera.
+This is needed to refresh the "Control Type" dropdown list with the new control we just added.
+
+### Monitor source tab
+
+![tapoc200-monitor-source-tab](https://user-images.githubusercontent.com/83918778/117584518-c6077200-b10d-11eb-86fa-7aba61aa6eca.jpg)
+
+**Source Path** is the RTSP path used to display the stream inside ZoneMinder, it has nothing to do with the control script.
+Inside the mobile application, create an account linked to the camera and use those credentials in the "Source Path".
+
+Change user, password and IP. Leave the port to 554 and /stream1.
+
+### Monitor control tab
+
+![tapoc200-monitor-control-tab](https://user-images.githubusercontent.com/83918778/117584528-cbfd5300-b10d-11eb-85be-8ce2536e8d0b.jpg)
+
+**Control Address** is the HTTPS path used to control the camera inside ZoneMinder.
+
+Change admin_password to the password you created when you installed the mobile application (the password linked to your email address).
+
+Change the IP address. **Leave the username to "admin"**, and the port to 443.
+
+**Control Type** : Select "Tapo C200" inside the dropdown list.
+
+**Now click on "Save" to save the new monitor.**
+
+If everything went smoothly, you should now be able to control the camera.
+
 ## Check that the script is running
 
 You can see the script's output in two ways :
 
 1. Inside ZoneMinder in the by clicking on "Log" in the main menu
-2. Or directly inside **/var/log/zm/zmcontrol_1.log**, here is how it should looks like :
+2. Or directly inside **/var/log/zm/zmcontrol_*.log**, here is how it should looks like :
 
 ```
 ...
