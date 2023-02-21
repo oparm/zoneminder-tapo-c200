@@ -175,6 +175,7 @@ Change user, password and IP. Leave the port to 554 and /stream1.
 Change admin_password to the password you created when you installed the mobile application (the password linked to your email address).
 
 Change the IP address. **Leave the username to "admin"**, and the port to 443.
+If "admin" doesn't work you will see authentication failure in the logs. In this case use the same username as in the mobile app.
 
 **Control Type** : Select "Tapo C200" inside the dropdown list.
 
